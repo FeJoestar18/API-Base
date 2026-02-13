@@ -16,6 +16,9 @@ public class UserRepository
     public async Task<User?> GetByEmail(string email)
         => await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
+    public async Task<User?> GetByCpf(string cpf)
+        => await _context.Users.FirstOrDefaultAsync(x => x.Cpf == cpf);
+
     public async Task Add(User user)
     {
         _context.Users.Add(user);

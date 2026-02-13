@@ -1,0 +1,96 @@
+# Arquivo de testes HTTP para a API Api-Base.
+
+@baseUrl = http://localhost:5240
+@register = {{baseUrl}}/api/auth/register
+@login = {{baseUrl}}/api/auth/login
+
+### Register - sucesso
+POST {{register}}
+Content-Type: application/json
+
+{
+  "email": "test.user@example.com",
+  "password": "Password123!",
+  "cpf": "56565735832",
+  "name": "Test User",
+  "address": {
+    "cep": "01001000",    
+    "street": "Praça da Sé",
+    "number": "100",
+    "complement": "Apto 1",
+    "neighborhood": "Sé",
+    "city": "São Paulo",
+    "state": "SP"
+  }
+}
+
+### Login - sucesso (usar após registro bem-sucedido)
+POST {{login}}
+Content-Type: application/json
+
+{
+  "email": "test.user@example.com",
+  "password": "Password123!"
+}
+
+### Register - CPF inválido (menos de 11 dígitos)
+POST {{register}}
+Content-Type: application/json
+
+{
+  "email": "badcpf@example.com",
+  "password": "Password123!",
+  "cpf": "12345",
+  "name": "Usuário CPF Inválido",
+  "address": {
+    "cep": "01001000",
+    "street": "Praça da Sé",
+    "number": "1",
+    "complement": null,
+    "neighborhood": "Sé",
+    "city": "São Paulo",
+    "state": "SP"
+  }
+}
+
+### Register - CEP inválido (não encontrado no ViaCEP)
+POST {{register}}
+Content-Type: application/json
+
+{
+  "email": "badcep@example.com",
+  "password": "Password123!",
+  "cpf": "56565735832",
+  "name": "Usuário CEP Inválido",
+  "address": {
+    "cep": "00000000",
+    "street": "Rua Inexistente",
+    "number": "1",
+    "complement": null,
+    "neighborhood": "Bairro",
+    "city": "Cidade",
+    "state": "ST"
+  }
+}
+
+### Register - duplicado (mesmo CPF) - execute após o primeiro registro de sucesso
+POST {{register}}
+Content-Type: application/json
+
+{
+  "email": "badcep@example.com",
+  "password": "Password123!",
+  "cpf": "56565735835",
+  "name": "Usuário Duplicado",
+  "address": {
+    "cep": "01001000",
+    "street": "Praça da Sé",
+    "number": "2",
+    "complement": null,
+    "neighborhood": "Sé",
+    "city": "São Paulo",
+    "state": "SP"
+  }
+}
+
+
