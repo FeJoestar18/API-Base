@@ -2,7 +2,7 @@
 
 Esta API foi desenvolvida como uma **base padrão para projetos em .NET**, com o objetivo de acelerar o início de novas aplicações, garantir organização do código e aplicar boas práticas de arquitetura.
 
-Construída sobre tecnologias da :contentReference[oaicite:0]{index=0}, esta API fornece uma estrutura pronta para uso, focada em escalabilidade, manutenção e produtividade.
+Esta API fornece uma estrutura pronta para uso, focada em escalabilidade, manutenção e produtividade.
 
 ---
 
