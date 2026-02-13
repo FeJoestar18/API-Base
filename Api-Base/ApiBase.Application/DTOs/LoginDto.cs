@@ -1,0 +1,3 @@
+namespace ApiBase.Application.DTOs;
+
+public record LoginDto(string Email, string Password);
